@@ -1,28 +1,16 @@
-const categories = (req, res) => {
-	res.json({
-		data: [
-			{
-				id: 1,
-				name: "콜드 브루 커피",
-			},
-			{
-				id: 2,
-				name: "브루드 커피",
-			},
-			{
-				id: 3,
-				name: "에스프레소",
-			},
-			{
-				id: 4,
-				name: "프라푸치노",
-			},
-			{
-				id: 5,
-				name: "블렌디드",
-			},
-		],
-	});
+const { PrismaClient } = require("@prisma/client");
+
+const prisma = new PrismaClient();
+
+const categories = async (req, res) => {
+	try {
+		const categories = await prisma.$queryRaw`select * from categories`;
+
+		return res.status(200).json({ categories });
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ message: err.message });
+	}
 };
 
 module.exports = { categories };

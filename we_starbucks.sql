@@ -19,14 +19,14 @@
 -- Table structure for table `allergies`
 --
 
-DROP TABLE IF EXISTS `allergies`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `allergies` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- DROP TABLE IF EXISTS `allergies`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!50503 SET character_set_client = utf8mb4 */;
+-- CREATE TABLE `allergies` (
+--   `id` int NOT NULL AUTO_INCREMENT,
+--   `name` varchar(100) DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,14 +43,14 @@ UNLOCK TABLES;
 -- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- DROP TABLE IF EXISTS `categories`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!50503 SET character_set_client = utf8mb4 */;
+-- CREATE TABLE `categories` (
+--   `id` int NOT NULL AUTO_INCREMENT,
+--   `name` varchar(100) NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,17 +67,17 @@ UNLOCK TABLES;
 -- Table structure for table `images`
 --
 
-DROP TABLE IF EXISTS `images`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `images` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `image_url` varchar(500) DEFAULT NULL,
-  `product_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- DROP TABLE IF EXISTS `images`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!50503 SET character_set_client = utf8mb4 */;
+-- CREATE TABLE `images` (
+--   `id` int NOT NULL AUTO_INCREMENT,
+--   `image_url` varchar(500) DEFAULT NULL,
+--   `product_id` int DEFAULT NULL,
+--   PRIMARY KEY (`id`),
+--   KEY `product_id` (`product_id`),
+--   CONSTRAINT `images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,19 +94,19 @@ UNLOCK TABLES;
 -- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `products`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `products` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `korean_name` varchar(100) NOT NULL,
-  `english_name` varchar(200) NOT NULL,
-  `category_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- DROP TABLE IF EXISTS `products`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!50503 SET character_set_client = utf8mb4 */;
+-- CREATE TABLE `products` (
+--   `id` int NOT NULL AUTO_INCREMENT,
+--   `korean_name` varchar(100) NOT NULL,
+--   `english_name` varchar(200) NOT NULL,
+--   `category_id` int DEFAULT NULL,
+--   PRIMARY KEY (`id`),
+--   KEY `category_id` (`category_id`),
+--   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `products`
@@ -122,26 +122,26 @@ UNLOCK TABLES;
 -- Table structure for table `products_allergies`
 --
 
-DROP TABLE IF EXISTS `products_allergies`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `products_allergies` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `product_id` int DEFAULT NULL,
-  `allergy_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
-  KEY `allergy_id` (`allergy_id`),
-  CONSTRAINT `products_allergies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  CONSTRAINT `products_allergies_ibfk_2` FOREIGN KEY (`allergy_id`) REFERENCES `allergies` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- DROP TABLE IF EXISTS `products_allergies`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!50503 SET character_set_client = utf8mb4 */;
+-- CREATE TABLE `products_allergies` (
+--   `id` int NOT NULL AUTO_INCREMENT,
+--   `product_id` int DEFAULT NULL,
+--   `allergy_id` int DEFAULT NULL,
+--   PRIMARY KEY (`id`),
+--   KEY `product_id` (`product_id`),
+--   KEY `allergy_id` (`allergy_id`),
+--   CONSTRAINT `products_allergies_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+--   CONSTRAINT `products_allergies_ibfk_2` FOREIGN KEY (`allergy_id`) REFERENCES `allergies` (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `products_allergies`
 --
 
-LOCK TABLES `products_allergies` WRITE;
+-- LOCK TABLES `products_allergies` WRITE;
 /*!40000 ALTER TABLE `products_allergies` DISABLE KEYS */;
 INSERT INTO `products_allergies` VALUES (1,1,1),(2,2,1),(3,3,1),(4,7,1),(5,8,1),(6,9,1),(7,9,2),(8,9,8);
 /*!40000 ALTER TABLE `products_allergies` ENABLE KEYS */;
