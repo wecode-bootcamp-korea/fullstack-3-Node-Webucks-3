@@ -30,7 +30,7 @@ const signUp = async (req, res) => {
 		console.log(`email: ${email} password: ${password}`);
 
 		await userService.signUp(email, password);
-		// await userService.findUser(email, password);
+		await userService.findUser(email);
 
 		return res.status(201).json({ message: 'Welcome!', email });
 	} catch (err) {

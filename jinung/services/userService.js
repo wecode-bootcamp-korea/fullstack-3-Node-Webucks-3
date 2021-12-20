@@ -24,9 +24,9 @@ const signIn = async (email, password) => {
 };
 
 const signUp = async (email, password) => {
-	// const [user] = await userDao.createUser(email, password);
+	const [user] = await userDao.createUser(email, password);
 
-	// console.log('signUp in service: ', user);
+	console.log('signUp in service: ', user);
 
 	if (!email.includes('@')) {
 		const error = new Error("ID must be included '@'");
