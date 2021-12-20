@@ -13,7 +13,7 @@ app.post('/users/signup', async (req, res) => {
 
 		console.log('email: ', email, 'name: ', name);
 
-		const createdUser = await prisma.$queryRaw(`INSERT INTO users(email, password VALUES ('${email}', '${password}'))`);
+		const createdUser = await prisma.$queryRaw(`INSERT INTO users(email, password) VALUES ('${email}', '${password}')`);
 
 		return res.status(201).send({ message: 'Crated' });
 	} catch (err) {
