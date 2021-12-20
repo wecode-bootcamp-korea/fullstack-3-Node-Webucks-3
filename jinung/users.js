@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
+const { info } = require('console');
 
 const prisma = new PrismaClient();
 const app = express();
@@ -21,15 +22,24 @@ app.post('/users/signup', async (req, res) => {
 	}
 });
 
-const server = http.createServer(app);
-
-const start = async () => {
+const signIn = async (req, res) => {
+	//
 	try {
-		server.listen(8000, () => console.log(`Server is listening on 8000`));
-	} catch (err) {
+		const { email, password } = req.body;
+		const REQUIRED_KEYS = { email, password };
+
+		for (let in REQUIRED_KEYS) {
+			if (!REQUIRED_KEYS[key]) {
+				return res.status(400).json({ message: `KEY_ERROR: ${info}` });
+			}
+		}
+
+		const [user] = await prisma.$queryRaw`
+			SELECT id, email, password FROM users WHERE email = ${email}
+		`;
+		console.log('users: ', user);
+	} catch {
 		console.log(err);
-		await prisma.$disconnect();
+		return res.status(500).json({ message: err.message });
 	}
 };
-
-start();
