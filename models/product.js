@@ -1,10 +1,10 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("./index");
 const getProducts = async () => {
   const coffeeProducts = await prisma.$queryRaw`
   SELECT * FROM product;
   `;
-  console.log(coffeeProducts);
+  // console.log(coffeeProducts, 1);
+  // console.log(1);
   return coffeeProducts;
 };
 
