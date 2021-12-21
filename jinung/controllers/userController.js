@@ -29,10 +29,17 @@ const signUp = async (req, res) => {
 		const { email, password } = req.body;
 		console.log(`email: ${email} password: ${password}`);
 
-		await userService.signUp(email, password);
-		await userService.findUser(email);
+		const REQUIRED_KEYS = { email, password };
 
-		return res.status(201).json({ message: 'Welcome!', email });
+		for (let key in REQUIRED_KEYS) {
+			if (!REQUIRED_KEYS[key]) {
+				return res.status(400).json({ message: `KEY_ERROR: ${info}` });
+			}
+		}
+
+		const user = await userService.signUp(email, password);
+
+		return res.status(201).json({ message: 'Welcome!' });
 	} catch (err) {
 		console.log(err);
 		return res.status(err.statusCode || 500).json({ message: err.message });

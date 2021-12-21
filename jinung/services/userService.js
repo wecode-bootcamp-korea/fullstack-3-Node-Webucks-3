@@ -24,32 +24,18 @@ const signIn = async (email, password) => {
 };
 
 const signUp = async (email, password) => {
-	const [user] = await userDao.createUser(email, password);
-
-	console.log('signUp in service: ', user);
-
-	if (!email.includes('@')) {
-		const error = new Error("ID must be included '@'");
-		error.statusCode = 400;
-		throw error;
-	}
-	if (!password.length >= 8) {
-		const error = new Error('Password length must be larger than 8');
-		error.statusCode = 400;
-		throw error;
-	}
-};
-
-const findUser = async (email) => {
 	const [user] = await userDao.findUser(email);
 
-	console.log('findUser in service: ', user);
+	console.log('user in service: ', user);
 
-	if (email === user.email) {
+	if (user) {
 		const error = new Error('Your email is duplicated');
 		error.statusCode = 400;
+		console.log(user.email);
 		throw error;
+	} else {
+		await userDao.createUser(email, password);
 	}
 };
 
-module.exports = { signIn, signUp, findUser };
+module.exports = { signIn, signUp };
