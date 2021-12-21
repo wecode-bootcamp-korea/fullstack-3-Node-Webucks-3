@@ -1,5 +1,6 @@
 const http = require("http");
 const express = require("express");
+const routes = require("./routes");
 const { PrismaClient } = require("@prisma/client");
 const { categories } = require("./categories");
 const {
@@ -12,29 +13,14 @@ const { detail } = require("./detail");
 
 const app = express();
 app.use(express.json());
+app.use(routes);
 
 const prisma = new PrismaClient();
-
-app.post("/users/signup", async (req, res) => {
-	try {
-		const { email, password, username, address, phone_number } = req.body;
-
-		const createUser =
-			await prisma.$queryRaw`INSERT INTO users (email, password, username, address, phone_number) VALUES (${email}, ${password}, ${username}, ${address}, ${phone_number} )`;
-
-		return res.status(201).json({ message: "CREATED" });
-	} catch (err) {
-		console.log(err);
-		return res.status(500).json({ message: err.message });
-	}
-});
 
 app.get("/", (req, res) => {
 	res.json({ message: "/ backend start" });
 });
 
-app.get("/products/categories", categories);
-app.get("/products", products);
 app.get("/products/2", detail);
 app.post("/products", createProduct);
 app.put("/products", updateProduct);
