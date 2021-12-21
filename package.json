@@ -1,23 +1,26 @@
 {
-  "name": "sexyback",
+  "name": "node_tutorial",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "main": "app.js",
+  "dependencies": {
+    "@prisma/client": "^3.6.0",
+    "express": "^4.17.1",
+    "routes": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.15",
+    "prisma": "^3.6.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "babel src/js -w -d dist/js",
+    "start": "nodemon --exec babel-node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wecode-bootcamp-korea/fullstack-3-Node-Webucks-3.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wecode-bootcamp-korea/fullstack-3-Node-Webucks-3/issues"
-  },
-  "homepage": "https://github.com/wecode-bootcamp-korea/fullstack-3-Node-Webucks-3#readme",
-  "dependencies": {
-    "nodemon": "^2.0.15"
-  }
+  "description": ""
 }
