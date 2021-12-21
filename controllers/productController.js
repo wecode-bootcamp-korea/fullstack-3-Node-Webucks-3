@@ -1,10 +1,10 @@
 const { productService } = require("../services");
 
-const getProduct = async (req, res) => {
-  const product = await productService.getProduct();
-  res.json(product);
+const getProducts = async (req, res) => {
+  const products = await productService.getProducts();
+  res.json(products);
 };
 
 module.exports = {
-  getProduct,
+  getProducts,
 };

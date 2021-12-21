@@ -1,9 +1,9 @@
 const { product } = require("../models");
 
-const getProduct = () => {
-  return product.getProduct();
+const getProducts = () => {
+  return product.getProducts();
 };
 
 module.exports = {
-  getProduct,
+  getProducts,
 };
