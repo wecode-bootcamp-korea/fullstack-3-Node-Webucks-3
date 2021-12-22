@@ -1,5 +1,10 @@
-const { prisma } = require("@prisma/client");
 const userDao = require("../models/userDao");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const makeHash = async (password) => {
+	return await bcrypt.hash(password, 10);
+};
 
 const signIn = async (email, password) => {
 	const [user] = await userDao.getUserByEmail(email);
@@ -13,7 +18,9 @@ const signIn = async (email, password) => {
 		throw error;
 	}
 
-	if (user.password !== password) {
+	const hashedPassword = await makeHash(password);
+
+	if (user.password !== hashedPassword) {
 		const error = new Error("INVALID_USER");
 		error.statusCode = 400;
 
@@ -33,9 +40,16 @@ const signUp = async (email, password, username, address, phone_number) => {
 		error.statusCode = 400;
 
 		throw error;
-	} else {
-		await userDao.createUser(email, password, username, address, phone_number);
 	}
+
+	const hashedPassword = await makeHash(password);
+	await userDao.createUser(
+		email,
+		hashedPassword,
+		username,
+		address,
+		phone_number
+	);
 };
 
 module.exports = { signIn, signUp };
