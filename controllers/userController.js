@@ -7,7 +7,7 @@ const signIn = async (req, res) => {
 
 		for (let key in REQUIRED_KEYS) {
 			if (!REQUIRED_KEYS[key]) {
-				return res.status(400).json({ message: `KEY_ERROR: ${info}` });
+				return res.status(400).json({ message: "KEY_ERROR" });
 			}
 		}
 
@@ -15,10 +15,10 @@ const signIn = async (req, res) => {
 
 		console.log("user in controller: ", token);
 
-		return res.status(200).json({ message: "LOGIN_SUCCESS", token });
+		return res.status(201).json({ message: "LOGIN_SUCCESS", token });
 	} catch (err) {
 		console.log(err);
-		return res.status(500).json({ message: err.message });
+		return res.status(err.statusCode || 500).json({ message: err.message });
 	}
 };
 
@@ -29,7 +29,7 @@ const signUp = async (req, res) => {
 
 		for (let key in REQUIRED_KEYS) {
 			if (!REQUIRED_KEYS[key]) {
-				return res.status(400).json({ message: `KEY_ERROR: ${info}` });
+				return res.status(400).json({ message: "KEY_ERROR" });
 			}
 		}
 
@@ -38,7 +38,7 @@ const signUp = async (req, res) => {
 		return res.status(201).json({ message: "CREATED" });
 	} catch (err) {
 		console.log(err);
-		return res.status(500).json({ message: err.message });
+		return res.status(err.statusCode || 500).json({ message: err.message });
 	}
 };
 

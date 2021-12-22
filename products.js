@@ -80,7 +80,7 @@ const updateProduct = (req, res) => {
 
 	const { id } = req.body;
 	const updateProduct = products.filter((product) => product.id === id);
-	updateProduct[0].englishName = "newCoffee";
+	//updateProduct[0].englishName = "newCoffee";
 
 	res.json({ data: products });
 };

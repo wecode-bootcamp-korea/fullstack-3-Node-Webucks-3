@@ -7,12 +7,12 @@ router.get("/", productController.getProducts);
 
 router.get("/categories", productController.getCategories);
 
-// router.get("/2");
+router.get("/:id", productController.getDetail);
 
-// router.post("/");
+router.post("/", productController.createProduct);
 
-// router.put("/");
+router.put("/", productController.updateProduct);
 
-// router.delete("/");
+router.delete("/", productController.deleteProduct);
 
 module.exports = router;
