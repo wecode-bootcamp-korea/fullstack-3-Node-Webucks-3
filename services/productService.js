@@ -31,7 +31,9 @@ const getDetail = async (id) => {
 };
 
 const createProduct = async (korean_name, english_name, category_id) => {
-	const product = await productDao.getProduct(korean_name);
+	console.log(korean_name);
+	const [product] = await productDao.getProductByKoreanName(korean_name);
+	console.log(product);
 
 	if (product) {
 		const error = new Error("ALREADY_EXIST");
@@ -44,8 +46,7 @@ const createProduct = async (korean_name, english_name, category_id) => {
 };
 
 const updateProduct = async (id, korean_name, english_name, category_id) => {
-	const [product] = await productDao.getProduct(id);
-	console.log(product);
+	const [product] = await productDao.getProductById(id);
 
 	const categories = await productDao.getCategories();
 
@@ -90,7 +91,8 @@ const updateProduct = async (id, korean_name, english_name, category_id) => {
 };
 
 const deleteProduct = async (id) => {
-	const [product] = await productDao.getProduct(id);
+	const [product] = await productDao.getProductById(id);
+	console.log("service", product);
 
 	if (!product) {
 		const error = new Error("NOT_EXIST_PRODUCT");

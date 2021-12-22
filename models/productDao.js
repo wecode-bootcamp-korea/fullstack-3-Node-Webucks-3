@@ -42,12 +42,21 @@ const getDetail = async (id) => {
 	return { detail, allergies };
 };
 
-const getProduct = async (id, korean_name) => {
+const getProductByKoreanName = async (korean_name) => {
 	const product = await prisma.$queryRaw`
     SELECT * from products
-    WHERE korean_name = ${korean_name} OR id = ${id}
+    WHERE korean_name = ${korean_name};
   `;
+	console.log("dao", product);
+	return product;
+};
 
+const getProductById = async (id) => {
+	const product = await prisma.$queryRaw`
+    SELECT * from products
+    WHERE id = ${id};
+  `;
+	console.log("dao", product);
 	return product;
 };
 
@@ -61,6 +70,13 @@ const createProduct = async (korean_name, english_name, category_id) => {
       (${korean_name},
       ${english_name},
       ${category_id});
+  `;
+
+	const setCount = await prisma.$queryRaw`
+    SET @COUNT = 0;
+  `;
+	const reArrange = await prisma.$queryRaw`
+  UPDATE products SET products.id = @COUNT:=@COUNT+1;
   `;
 
 	return newProduct;
@@ -84,13 +100,21 @@ const deleteProduct = async (id) => {
     FROM products
     WHERE id = ${id}
   `;
+
+	const setCount = await prisma.$queryRaw`
+    SET @COUNT = 0;
+  `;
+	const reArrange = await prisma.$queryRaw`
+  UPDATE products SET products.id = @COUNT:=@COUNT+1;
+  `;
 };
 
 module.exports = {
 	getProducts,
 	getCategories,
 	getDetail,
-	getProduct,
+	getProductByKoreanName,
+	getProductById,
 	createProduct,
 	updateProduct,
 	deleteProduct,

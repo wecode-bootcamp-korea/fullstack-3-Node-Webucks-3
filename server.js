@@ -1,14 +1,13 @@
 const http = require("http");
 const express = require("express");
 const routes = require("./routes");
-const { PrismaClient } = require("@prisma/client");
-const { createProduct, updateProduct, deleteProduct } = require("./products");
+//const { PrismaClient } = require("@prisma/client");
 
 const app = express();
 app.use(express.json());
 app.use(routes);
 
-const prisma = new PrismaClient();
+//const prisma = new PrismaClient();
 
 app.get("/", (req, res) => {
 	res.json({ message: "/ backend start" });

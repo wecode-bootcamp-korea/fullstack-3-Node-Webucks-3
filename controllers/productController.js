@@ -84,7 +84,7 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
 	try {
 		const id = req.query.id;
-		console.log(id);
+		console.log("controller", id);
 
 		if (!id) {
 			return res.status(400).json({ message: "KEY_ERROR" });
