@@ -43,13 +43,13 @@ const getProductDetails = async () => {
 		ON 
 			categories.id = products.category_id
 		JOIN 
-			products_allergies 
+			product_allergies 
 		ON 
-			products_allergies.id = products.id
+			product_allergies.id = products.id
 		JOIN 
-			allergies ON allergies.id = products_allergies.allergy_id
+			allergies ON allergies.id = product_allergies.allergy_id
 		WHERE 
-			categories.id = 2;
+			categories.id = 4;
 	`;
 	console.log('productDetail in dao: ', product);
 	return product;

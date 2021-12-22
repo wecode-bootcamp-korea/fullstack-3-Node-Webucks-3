@@ -26,7 +26,7 @@ const signIn = async (req, res) => {
 
 const signUp = async (req, res) => {
 	try {
-		const { email, password } = req.body;
+		const { email, password, username, address, phone_number } = req.body;
 
 		const REQUIRED_KEYS = { email, password };
 		for (let key in REQUIRED_KEYS) {
@@ -35,7 +35,7 @@ const signUp = async (req, res) => {
 			}
 		}
 
-		await userService.signUp(email, password);
+		await userService.signUp(email, password, username, address, phone_number);
 
 		return res.status(201).json({ message: 'Welcome!' });
 	} catch (err) {

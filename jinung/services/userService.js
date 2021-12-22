@@ -25,7 +25,7 @@ const signIn = async (email, password) => {
 	return token;
 };
 
-const signUp = async (email, password) => {
+const signUp = async (email, password, username, address, phone_number) => {
 	const [user] = await userDao.findUser(email);
 
 	const checkId = email.includes('@') ? true : false; // ID, Password 유효성 검증
@@ -50,7 +50,7 @@ const signUp = async (email, password) => {
 	}
 
 	const hashedPassword = bcrypt.hashSync(password, 10); // password hashing
-	return await userDao.createUser(email, hashedPassword);
+	return await userDao.createUser(email, hashedPassword, username, address, phone_number);
 };
 
 module.exports = { signIn, signUp };

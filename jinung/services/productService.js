@@ -3,10 +3,10 @@ const productDao = require('../models/productDao');
 const categories = async () => {
 	return await productDao.getCategoreis();
 };
-const productList = async () => {
-	const product = await productDao.getProductList;
+const productList = () => {
+	const product = productDao.getProductList();
 
-	if (product === undefined) {
+	if (!product) {
 		const error = new Error('Not exist list');
 		error.statusCode = 400;
 
