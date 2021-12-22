@@ -13,8 +13,6 @@ const signIn = async (req, res) => {
 
 		const token = await userService.signIn(email, password);
 
-		console.log("user in controller: ", token);
-
 		return res.status(201).json({ message: "LOGIN_SUCCESS", token });
 	} catch (err) {
 		console.log(err);

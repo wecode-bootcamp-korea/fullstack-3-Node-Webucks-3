@@ -2,8 +2,7 @@ const prisma = require("./index");
 
 const getUserByEmail = async (email) => {
 	const user = await prisma.$queryRaw`
-    SELECT
-      email, password
+    SELECT *
     FROM users
     WHERE email = ${email}
   `;

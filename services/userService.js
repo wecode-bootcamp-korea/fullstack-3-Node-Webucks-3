@@ -8,9 +8,7 @@ const makeHash = async (password) => {
 
 const signIn = async (email, password) => {
 	const [user] = await userDao.getUserByEmail(email);
-
-	console.log("user in service: ", user);
-
+	console.log(user);
 	if (!user) {
 		const error = new Error("INVALID_USER");
 		error.statusCode = 400;
@@ -20,14 +18,24 @@ const signIn = async (email, password) => {
 
 	const hashedPassword = await makeHash(password);
 
-	if (user.password !== hashedPassword) {
+	const compare = (password, dbPassword) => {
+		const isSame = bcrypt.compareSync(password, dbPassword);
+		return isSame;
+	};
+
+	if (!compare(password, user.password)) {
 		const error = new Error("INVALID_USER");
 		error.statusCode = 400;
 
 		throw error;
 	}
 
-	const token = "12345";
+	const token = jwt.sign({ id: user.id }, "wecode_fullstack", {
+		expiresIn: "30m",
+	});
+
+	console.log("token : ", token);
+	console.log(jwt.verify(token, "wecode_fullstack"));
 
 	return token;
 };
