@@ -37,7 +37,7 @@ const signUp = async (req, res) => {
 			}
 		}
 
-		const user = await userService.signUp(email, password);
+		await userService.signUp(email, password);
 
 		return res.status(201).json({ message: 'Welcome!' });
 	} catch (err) {

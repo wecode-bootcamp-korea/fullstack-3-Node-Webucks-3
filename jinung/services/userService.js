@@ -32,6 +32,7 @@ const signUp = async (email, password) => {
 		const error = new Error('Your email is duplicated');
 		error.statusCode = 400;
 		console.log(user.email);
+
 		throw error;
 	} else {
 		await userDao.createUser(email, password);
