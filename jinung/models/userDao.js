@@ -16,7 +16,10 @@ const getUserByEmail = async (email) => {
 
 const createUser = async (email, password) => {
 	const user = await prisma.$queryRaw`
-    INSERT INTO users (email, password) VALUES (${email}, ${password});
+    INSERT INTO 
+			users (email, password) 
+		VALUES 
+			(${email}, ${password});
   `;
 	console.log('createUsers in dao: ', user);
 	return user;

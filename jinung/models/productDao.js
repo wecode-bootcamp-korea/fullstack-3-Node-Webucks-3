@@ -45,7 +45,7 @@ const getProductDetails = async () => {
 		JOIN 
 			products_allergies 
 		ON 
-			products_allergies.drink_id = products.id
+			products_allergies.id = products.id
 		JOIN 
 			allergies ON allergies.id = products_allergies.allergy_id
 		WHERE 
