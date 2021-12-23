@@ -6,7 +6,7 @@ const categories = async () => {
 const productList = () => {
 	const product = productDao.getProductList();
 
-	if (!product) {
+	if (product === undefined) {
 		const error = new Error('Not exist list');
 		error.statusCode = 400;
 
