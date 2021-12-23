@@ -13,7 +13,7 @@ const validateToken = (req, res, next) => {
 	next();
 };
 
-const likeAuthorizeMiddleware = (req, res, next) => {
+const likeAuthorizeMiddleware = async (req, res, next) => {
 	const { email } = req.params;
 	const likeBtn = await isLike(email);
 	const isAuthorize = req.email === likeBtn.email;
