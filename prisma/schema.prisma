@@ -35,10 +35,6 @@ model Detail{
   englishName String @map("english_name")
   description String @db.Text
   allergens String?
-  // nutritionId Int? @map("nutrition_id")
-  // productId Int? @map("product_id")
-  // nutrition Nutrition @relation(fields: [nutritionId], references: [id])
-  // product Product @relation(fields: [productId], references: [id])
   nutrition Nutrition[]
   product Product[]
   @@map("detail")
@@ -52,6 +48,17 @@ model Nutrition{
   protein Decimal
   caffein Decimal
   detail Detail[]
-  // detail Detail @relation(fields: [nutritionId], references: [id])
   @@map("nutrition")
+}
+
+model Users{
+  id Int @id @default(autoincrement())
+  email String
+  password String @db.VarChar(15)
+  policyAgreed Boolean @default(true) @map("policy_agreed")
+  username String?
+  address String?
+  phoneNumber String? @map("phone_number")
+  createdAt DateTime? @default(now()) @map("created_at")
+  @@map("users")
 }

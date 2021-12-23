@@ -7,11 +7,7 @@ const routes = require("./routes");
 const app = express();
 app.use(express.json()); // for parsing application/json
 app.use(routes);
-// app.use((err, req, res) => {
-//   const { status, message } = err;
-//   console.error(err);
-//   res.status(status || 500).json({ message });
-// });
+
 app.get("/", (req, res) => {
   res.json({ message: "start page" });
 });
