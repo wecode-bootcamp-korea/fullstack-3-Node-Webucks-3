@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Categories{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(40)
+  products Product[]
+  @@map("categories")
+}
+
+model Product{
+  id Int @id @default(autoincrement())
+  koreanName String @map("korean_name")
+  englishName String @map("english_name")
+  category String?
+  categories Categories @relation(fields: [categoryId], references: [id])
+  categoryId Int @map("category_id")
+  imageUrl String @db.Text @map("image_url")
+  detail Detail[]
+  @@map("product")
+}
+
+model Detail{
+  id Int @id @default(autoincrement())
+  koreanName String @map("korean_name")
+  englishName String @map("english_name")
+  description String @db.Text
+  allergens String?
+  nutrition Nutrition[]
+  product Product[]
+  @@map("detail")
+}
+
+model Nutrition{
+  id Int @id @default(autoincrement())
+  calories Decimal
+  fat Decimal
+  sodium Decimal
+  protein Decimal
+  caffein Decimal
+  detail Detail[]
+  @@map("nutrition")
+}
+
+model Users{
+  id Int @id @default(autoincrement())
+  email String
+  password String
+  policyAgreed Boolean @default(true) @map("policy_agreed")
+  username String?
+  address String?
+  phoneNumber String? @map("phone_number")
+  createdAt DateTime? @default(now()) @map("created_at")
+  @@map("users")
+}
