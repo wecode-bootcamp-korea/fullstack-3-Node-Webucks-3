@@ -4,9 +4,12 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 // const { getProduct, getDetail } = require("./postings");
 const routes = require("./routes");
+const cors = require("cors");
 const app = express();
+
 app.use(express.json()); // for parsing application/json
 app.use(routes);
+app.use(cors);
 
 app.get("/", (req, res) => {
   res.json({ message: "start page" });
